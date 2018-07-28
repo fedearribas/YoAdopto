@@ -1,5 +1,5 @@
-bin
-obj
-.vscode
-*.db
-wwwroot
+YoAdopto.API/bin
+YoAdopto.API/obj
+YoAdopto.API/.vscode
+YoAdopto.API/*.db
+YoAdopto.API/wwwroot
