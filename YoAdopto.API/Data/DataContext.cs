@@ -12,8 +12,7 @@ namespace YoAdopto.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Publication> Publications { get; set; }
         public DbSet<PublicationPhoto> PublicationPhotos { get; set; }
-        public DbSet<PublicationType> PublicationTypes { get; set; }
-        public DbSet<PublicationWorkflow> PublicationWorkflows { get; set; }
+        public DbSet<PublicationType> PublicationTypes { get; set; }        
 
         protected override void OnModelCreating(ModelBuilder builder)
         {            

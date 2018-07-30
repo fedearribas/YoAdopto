@@ -3,6 +3,7 @@ using System.Linq;
 using YoAdopto.API.Models;
 using Newtonsoft.Json;
 using CryptoHelper;
+using System;
 
 namespace YoAdopto.API.Data
 {
@@ -35,5 +36,41 @@ namespace YoAdopto.API.Data
 
         _context.SaveChanges();
     }
+
+    public void SeedPublicationTypes()
+    {
+        if (_context.PublicationTypes.Any())
+            return;
+
+        _context.PublicationTypes.RemoveRange(_context.PublicationTypes);
+        _context.SaveChanges();
+        var types = new List<PublicationType> {
+            new PublicationType {
+                Id = 1,
+                Description = "Perdidos",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Active = true
+            },
+            new PublicationType {
+                Id = 2,
+                Description = "Encontrados",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Active = true
+            },
+            new PublicationType {
+                Id = 3,
+                Description = "Adopciones",
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                Active = true
+            }
+        };       
+
+        _context.PublicationTypes.AddRange(types);
+        _context.SaveChanges();
+    }
+    
   }
 }

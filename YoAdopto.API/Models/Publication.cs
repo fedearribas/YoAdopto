@@ -8,8 +8,6 @@ namespace YoAdopto.API.Models
         public string Description { get; set; }
         public int PublicationTypeId { get; set; }
         public PublicationType PublicationType { get; set; }
-        public int PublicationWorkflowId { get; set; }
-        public PublicationWorkflow PublicationWorkflow { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
         public string State { get; set; }

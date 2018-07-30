@@ -82,6 +82,7 @@ namespace YoAdopto.API
             }
             
             seeder.SeedUsers();
+            seeder.SeedPublicationTypes();
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
