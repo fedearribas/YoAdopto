@@ -1,0 +1,18 @@
+[
+  {
+    "Email": "admin@test.com",
+    "Username": "Admin",    
+    "Password": "password",    
+    "CreatedAt": "2018-07-30",
+    "LastActive": "2018-07-30",
+    "Active": "true"
+  },
+  {
+    "Email": "fede.arribas@gmail.com",
+    "Username": "Federico Arribas",
+    "Password": "password",    
+    "CreatedAt": "2018-07-30",
+    "LastActive": "2018-07-30",
+    "Active": "true"
+  }
+]

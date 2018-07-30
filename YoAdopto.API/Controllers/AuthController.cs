@@ -38,7 +38,7 @@ namespace YoAdopto.API.Controllers
                 userDto.Username = userDto.Username.ToLower();
 
             if (await _repo.UserExists(userDto.Username, userDto.Email))
-                return BadRequest("Username is already taken");
+                return BadRequest("El nombre de usuario ya existe");
            
             var userToCreate = _mapper.Map<User>(userDto);
             var createdUser = await _repo.Register(userToCreate, userDto.Password);

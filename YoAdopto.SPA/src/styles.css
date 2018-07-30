@@ -8,3 +8,7 @@ body {
 .content-wrapper {
   margin-top: 105px;
 }
+
+.clickeable {
+  cursor: pointer;
+}

@@ -13,6 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { JwtHelperService, JwtModule } from '../../node_modules/@auth0/angular-jwt';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -40,7 +41,8 @@ export const jwtConfig = {
       AppRouters,
       JwtModule.forRoot({
         config: jwtConfig
-      })
+      }),
+      BsDropdownModule.forRoot()
    ],
    providers: [
      AuthService,

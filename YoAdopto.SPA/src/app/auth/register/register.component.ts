@@ -40,9 +40,9 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.signUpUser = Object.assign({}, this.registerForm.value);
       this.authService.register(this.signUpUser).subscribe(() => {
-        this.alertify.success('Registration successful');
+        this.alertify.success('Registración exitosa!');
       }, error => {
-        this.alertify.error(error);
+        this.alertify.error(error.error);
       }, () => {
         this.authService.login(this.signUpUser).subscribe(() => {
           this.router.navigate(['']);

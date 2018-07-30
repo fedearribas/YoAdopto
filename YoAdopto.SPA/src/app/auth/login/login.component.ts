@@ -19,11 +19,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.model);
     this.authService.login(this.model).subscribe(data => {
-      this.alertify.success('Logged in successfully');
+      this.alertify.success('Ha ingresado exitosamente. Bienvenido!');
     }, error => {
-      this.alertify.error('Failed to login');
+      this.alertify.error('Error al iniciar sesión');
     }, () => {
       this.router.navigate(['']);
     }

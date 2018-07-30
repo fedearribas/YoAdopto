@@ -17,6 +17,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using YoAdopto.API.Contracts;
+using Microsoft.AspNetCore.Diagnostics;
+using System.Net;
+using Microsoft.AspNetCore.Http;
+using YoAdopto.API.Helpers;
 
 namespace YoAdopto.API
 {
@@ -32,8 +36,7 @@ namespace YoAdopto.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
-            services.AddCors();
+            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);            
             services.AddDbContext<DataContext>(x => x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));            
             services.AddScoped<IAuthRepository, AuthRepository>();
 
@@ -48,13 +51,15 @@ namespace YoAdopto.API
                         ValidateAudience = false
                     };
                 });
- 
+
+            services.AddTransient<Seed>();
             services.AddAutoMapper();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -62,11 +67,24 @@ namespace YoAdopto.API
             }
             else
             {
-                app.UseHsts();
+                //app.UseHsts();
+                 app.UseExceptionHandler(builder => 
+                    builder.Run(async context => {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                        var error = context.Features.Get<IExceptionHandlerFeature>();
+                        if (error != null)
+                        {
+                            context.Response.AddApplicationError(error.Error.Message);
+                            await context.Response.WriteAsync(error.Error.Message);
+                        }
+                    }));
             }
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
-            app.UseAuthentication();      
+            
+            seeder.SeedUsers();
+            app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.UseMvc();
         }
     }
