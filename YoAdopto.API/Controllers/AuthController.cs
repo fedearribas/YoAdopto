@@ -37,7 +37,7 @@ namespace YoAdopto.API.Controllers
             if (!string.IsNullOrEmpty(userDto.Username))
                 userDto.Username = userDto.Username.ToLower();
 
-            if (await _repo.UserExists(userDto.Username))
+            if (await _repo.UserExists(userDto.Username, userDto.Email))
                 return BadRequest("Username is already taken");
            
             var userToCreate = _mapper.Map<User>(userDto);
@@ -51,7 +51,7 @@ namespace YoAdopto.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]UserForLoginDto userDto)
         {
-            var userFromRepo = await _repo.Login(userDto.Username.ToLower(), userDto.Password);
+            var userFromRepo = await _repo.Login(userDto.Email.ToLower(), userDto.Password);
 
             if (userFromRepo == null)
                 return Unauthorized();

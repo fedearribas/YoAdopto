@@ -1,0 +1,55 @@
+<div class="container content-wrapper">
+<div class="row">
+    <div class="col-md-6 mr-md-auto ml-md-auto">
+        <div class="card">
+            <div class="card-body">
+              <div class="text-center">
+                <img src="../../../assets/images/yoadopto-logo.png" class="mb-2" width="60px" alt="">
+                <h3 class="card-title">Ingresar</h3>
+            </div>
+              <hr>
+              <form (ngSubmit)="login()" #loginForm="ngForm">
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <div class="form-group">
+                      <input id="email"
+                            type="email"
+                            required
+                            email
+                            name='email'
+                            placeholder="Email"
+                            #email="ngModel"
+                            [(ngModel)]="model.email"
+                            class="form-control">
+                    </div>
+
+                  <div class="form-group">
+                    <input id="password"
+                          type="password"
+                          required
+                          placeholder="Contraseña"
+                          name='password'
+                          #password="ngModel"
+                          [(ngModel)]="model.password"
+                          class="form-control">
+                  </div>
+
+                  <p> No tienes una cuenta? Regístrate <a routerLink="/register">aquí</a></p>
+
+                  <div class="form-group">
+                    <button type="submit"
+                            [disabled]="!(loginForm.valid)"
+                            class="btn btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i> Acceder
+                    </button>
+                  </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+    </div>
+  </div>
+</div>

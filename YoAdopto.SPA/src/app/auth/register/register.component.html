@@ -1,0 +1,73 @@
+<div class="container content-wrapper">
+  <div class="row">
+    <div class="col-md-6 mr-md-auto ml-md-auto">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                  <img src="../../../assets/images/yoadopto-logo.png" class="mb-2" width="60px" alt="">
+                  <h3 class="card-title">Registrarse</h3>
+                </div>
+                <hr>
+              <form (submit)="register()" [formGroup]="registerForm">
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <div class="form-group">
+                      <input type="email"
+                      [ngClass]="{'is-invalid': registerForm.get('email').errors && registerForm.get('email').touched}" class="form-control" placeholder="Email" formControlName="email">
+                      <span class="invalid-feedback" *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched">
+                        Debe ingresar una cuenta de email válida
+                      </span>
+                    </div>
+
+                    <div class="form-group">
+                      <input type="text" [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}" class="form-control" placeholder="Nombre y Apellido" formControlName="username">
+                      <span class="invalid-feedback" *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched">
+                        Debe ingresar su nombre y apellido
+                      </span>
+                    </div>
+
+                  <div class="form-group">
+                    <input type="password" [ngClass]="{'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}" class="form-control" placeholder="Contraseña" formControlName="password">
+                    <span class="invalid-feedback" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+                      Debe ingresar una contraseña
+                    </span>
+                    <span class="invalid-feedback" *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">
+                      La contraseña debe tener al menos 4 caracteres
+                    </span>
+                    <span class="invalid-feedback" *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">
+                      La contraseña no puede tener más de 8 caracteres
+                    </span>
+                  </div>
+
+                  <div class="form-group">
+                      <input type="password" [ngClass]="{'is-invalid': registerForm.get('confirmPassword').touched && (registerForm.get('confirmPassword').errors ||
+                      registerForm.hasError('mismatch'))}" class="form-control" placeholder="Confirmar Contraseña" formControlName="confirmPassword">
+                      <span class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+                        Debe confirmar la contraseña
+                      </span>
+                      <span class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')">
+                        Las contraseñas deben coincidir
+                      </span>
+                    </div>
+
+                  <p> Ya tienes una cuenta? Ingresa desde <a routerLink="/login">aquí</a></p>
+
+                  <div class="form-group">
+                    <button type="submit"
+                      [disabled]="!(registerForm.valid)"
+                      class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrarse
+                    </button>
+                  </div>
+
+
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+    </div>
+  </div>
+</div>

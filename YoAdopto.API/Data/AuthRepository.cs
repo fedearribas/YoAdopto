@@ -8,20 +8,21 @@ using CryptoHelper;
 
 namespace YoAdopto.API.Data
 {
-    public class AuthRepository : RepositoryBase<User>, IAuthRepository
+    public class AuthRepository : IAuthRepository
     {
-       public AuthRepository(DataContext context)
-            :base(context)
+        private readonly DataContext context;
+        public AuthRepository(DataContext context)
         {
+            this.context = context;
 
         }
-        public async Task<User> Login(string username, string password)
+        public async Task<User> Login(string email, string password)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Email == email);
             if (user == null)
                 return null;
 
-            if(!VerifyPassword(user.Password, password))
+            if (!VerifyPassword(user.Password, password))
                 return null;
 
             return user;
@@ -31,7 +32,7 @@ namespace YoAdopto.API.Data
         {
             user.Password = HashPassword(password);
             await context.Users.AddAsync(user);
-            await context.SaveChangesAsync();            
+            await context.SaveChangesAsync();
             return user;
         }
 
@@ -46,11 +47,11 @@ namespace YoAdopto.API.Data
             return Crypto.VerifyHashedPassword(hash, password);
         }
 
-        public async Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username, string email)
         {
-            if (await context.Users.AnyAsync(x => x.Username == username))
+            if (await context.Users.AnyAsync(x => x.Username == username || x.Email == email))
                 return true;
-            return false;       
+            return false;
         }
     }
 }

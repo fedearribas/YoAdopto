@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
-  <a class="navbar-brand" href="#" (click)="navbarCollapsed = true"><i class="fa fa-paw logo" aria-hidden="true"></i> Yo Adopto</a>
+  <a class="navbar-brand" [routerLink]="['']" (click)="navbarCollapsed = true"><i class="fa fa-paw logo" aria-hidden="true"></i> Yo Adopto</a>
   <button class="navbar-toggler"(click)="isCollapsed = !isCollapsed"
     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
     type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,9 +8,11 @@
 
   <div class="collapse navbar-collapse" id="collapseBasic" [collapse]="isCollapsed">
     <ul class="navbar-nav ml-auto">
+
       <li class="nav-item active">
-        <a class="nav-link" href="#" (click)="isCollapsed = true">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['']" (click)="isCollapsed = true">Home <span class="sr-only">(current)</span></a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="isCollapsed = true">Perdidos</a>
       </li>
@@ -19,6 +21,9 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" (click)="isCollapsed = true">En Adopción</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']" (click)="isCollapsed = true"> <i class="fa fa-user"></i> Ingresar</a>
       </li>
     </ul>
   </div>
