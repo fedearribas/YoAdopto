@@ -9,7 +9,7 @@
   <div class="container">
   <div class="row feature__list">
     <div class="col-lg-4 key__feature">
-      <div class="key-feature__image lost">
+      <div class="key-feature__image lost" [routerLink]="['/perdidos']">
         <i class="fa fa-paw"></i>
       </div>
       <h2 class="feature__title">Perdidos</h2>
@@ -34,3 +34,18 @@
   </div><!-- /.row -->
 </div>
 </section>
+<footer class="main-footer">
+    <nav>
+        <ul class="main-footer__links">
+            <li class="main-footer__link">
+                <a href="#">Contacto</a>
+            </li>
+            <li class="main-footer__link">
+                <a href="#">Términos de uso</a>
+            </li>
+            <li class="main-footer__link">
+                <a target="blank" href="https://www.linkedin.com/in/fedearribas/">© {{ currentYear }} Federico Arribas</a>
+            </li>
+        </ul>
+    </nav>
+</footer>

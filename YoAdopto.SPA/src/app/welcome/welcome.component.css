@@ -27,6 +27,7 @@
 #key-features .section-title {
   color: #eeeeee;
   margin-top: 48px;
+  font-weight: 100;
 }
 
 .feature__list {
@@ -51,6 +52,16 @@
   border-radius: 50%;
   margin: auto;
   padding: 20px;
+  cursor: pointer;
+  transition: box-shadow 0.5s;
+}
+
+.key-feature__image:hover {
+  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.5);
+}
+
+.key-feature__image:focus {
+  outline: none;
 }
 
 .lost {
@@ -71,10 +82,37 @@
 .key-feature__image > i {
   font-size: 4.8rem;
   color: #eeeeee;
-
 }
 
 .feature__description {
   color: #614940;
   font-size: 1rem;
+}
+
+
+.main-footer {
+  background: rgb(59, 44, 15);
+  padding: 16px;
+}
+
+.main-footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.main-footer__link {
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.main-footer__link a {
+  color: white;
+  text-decoration: none;
+}
+
+.main-footer__link a:hover,
+.main-footer__link a:active {
+  color: #ccc;
 }

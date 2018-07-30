@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
   margin-top: 85px;
+  background: #f1f8e9;
+  color: #795548;
+  font-family: 'Roboto', sans-serif;
 }
 
 .content-wrapper {
@@ -11,4 +16,8 @@ body {
 
 .clickeable {
   cursor: pointer;
+}
+
+.page-title-header {
+  font-weight: 300;
 }

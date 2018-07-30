@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/fo
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { JwtHelperService, JwtModule } from '../../node_modules/@auth0/angular-jwt';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { MissingComponent } from './missing/missing.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -30,7 +31,8 @@ export const jwtConfig = {
       WelcomeComponent,
       NavbarComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      MissingComponent
    ],
    imports: [
       BrowserModule,
