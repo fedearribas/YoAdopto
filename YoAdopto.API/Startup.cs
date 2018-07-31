@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using YoAdopto.API.Helpers;
+using DatingApp.API.Helpers;
 
 namespace YoAdopto.API
 {
@@ -37,7 +38,8 @@ namespace YoAdopto.API
         public void ConfigureServices(IServiceCollection services)
         {
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);            
-            services.AddDbContext<DataContext>(x => x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));            
+            services.AddDbContext<DataContext>(x => x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IAuthRepository, AuthRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

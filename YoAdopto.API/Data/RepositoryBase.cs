@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using YoAdopto.API.Contracts;
 
 namespace YoAdopto.API.Data
@@ -15,14 +17,14 @@ namespace YoAdopto.API.Data
             this.context = context;
         }
  
-        public IEnumerable<T> FindAll()
+        public async Task<IEnumerable<T>> FindAllAsync()
         {
-            return this.context.Set<T>();
+            return await this.context.Set<T>().ToListAsync();
         }
  
-        public IEnumerable<T> FindByCondition(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression)
         {
-            return this.context.Set<T>().Where(expression);
+            return await this.context.Set<T>().Where(expression).ToListAsync();
         }
  
         public void Create(T entity)
@@ -40,9 +42,9 @@ namespace YoAdopto.API.Data
             this.context.Set<T>().Remove(entity);
         }
  
-        public void Save()
+        public async Task SaveAsync()
         {
-            this.context.SaveChanges();
+           await  this.context.SaveChangesAsync();
         }
     }
 }

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.alertify.error('Error al iniciar sesión');
     }, () => {
-      this.router.navigate(['']);
+      this.router.navigate(['/perdidos']);
     }
     );
   }
