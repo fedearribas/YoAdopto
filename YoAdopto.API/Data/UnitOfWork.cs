@@ -1,9 +1,11 @@
 using System;
+using System.Threading.Tasks;
+using YoAdopto.API.Contracts;
 using YoAdopto.API.Models;
 
 namespace YoAdopto.API.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private DataContext context = new DataContext();
         private GenericRepository<User> userRepository;
@@ -63,9 +65,9 @@ namespace YoAdopto.API.Data
             }
         }
 
-        public void Save()
+        public async Task<bool> Save()
         {
-            context.SaveChanges();
+            return await context.SaveChangesAsync() > 0;
         }
 
         private bool disposed = false;

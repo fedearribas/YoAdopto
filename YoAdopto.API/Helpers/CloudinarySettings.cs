@@ -1,4 +1,4 @@
-namespace DatingApp.API.Helpers
+namespace YoAdopto.API.Helpers
 {
     public class CloudinarySettings
     {

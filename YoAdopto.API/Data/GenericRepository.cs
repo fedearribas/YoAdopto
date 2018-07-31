@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YoAdopto.API.Contracts;
+using YoAdopto.API.Helpers;
 
 namespace YoAdopto.API.Data
 {
@@ -23,27 +24,16 @@ namespace YoAdopto.API.Data
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
         {
-            IQueryable<T> query = dbSet;
+            return await GetQuery().ToListAsync();
+        }
 
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return await orderBy(query).ToListAsync();
-            }
-            else
-            {
-                return await query.ToListAsync();
-            }
+        public async Task<PagedList<T>> GetPaged(Expression<Func<T, bool>> filter = null, 
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
+            string includeProperties = "",
+            int pageNumber = 1,
+            int pageSize = 10)
+        {
+            return await PagedList<T>.CreateAsync(GetQuery(filter, orderBy, includeProperties), pageNumber, pageSize);
         }
 
          public async Task<T> GetById(int id)
@@ -75,6 +65,33 @@ namespace YoAdopto.API.Data
         {
             T entity = dbSet.Find(id);
             Delete(entity);
-        }       
+        }
+
+        private IQueryable<T> GetQuery(Expression<Func<T, bool>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string includeProperties = "")
+        {
+            IQueryable<T> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                return orderBy(query);
+            }
+            else
+            {
+                return query;
+            }
+        }
     }
 }
