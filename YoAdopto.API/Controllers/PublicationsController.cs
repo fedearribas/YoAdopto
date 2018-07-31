@@ -15,13 +15,13 @@ namespace YoAdopto.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PublicationController : ControllerBase
+    public class PublicationsController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
         private readonly IOptions<CloudinarySettings> cloudinaryConfig;
         private Cloudinary _cloudinary;
-        public PublicationController(IUnitOfWork unitOfWork,
+        public PublicationsController(IUnitOfWork unitOfWork,
             IMapper mapper,
             IOptions<CloudinarySettings> cloudinaryConfig)
         {
@@ -41,10 +41,10 @@ namespace YoAdopto.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPublications(PublicationParams publicationParams)
         {
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var userFromRepo = await unitOfWork.UserRepository.GetById(currentUserId);
+            //var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            //var userFromRepo = await unitOfWork.UserRepository.GetById(currentUserId);
 
-            publicationParams.UserId = currentUserId;
+            //publicationParams.UserId = currentUserId;
 
             var publications = await unitOfWork.PublicationRepository.GetPaged(filter: p =>
              p.PublicationTypeId == publicationParams.PublicationTypeId,
