@@ -10,7 +10,6 @@ import { PublicationService } from '../_services/publication.service';
 export class PublicationsResolver implements Resolve<Publication[]> {
   pageSize = 5;
   pageNumber = 1;
-  likesParam = 'Likers';
 
   publicationParams: any = {};
 
@@ -18,9 +17,7 @@ export class PublicationsResolver implements Resolve<Publication[]> {
     private alertify: AlertifyService) {  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<Publication[]> {
-    console.log('resolving');
-
-    this.publicationParams.publicationType = route.data['publicationType'];
+    this.publicationParams.publicationTypeId = route.data['publicationTypeId'];
     this.publicationParams.orderBy = 'createdAt';
     return this.publicationService.getPublications(this.pageNumber, this.pageSize, this.publicationParams)
     .pipe(

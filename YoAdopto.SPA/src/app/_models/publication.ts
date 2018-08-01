@@ -6,4 +6,5 @@ export interface Publication {
   description: string;
   publicationType: number;
   publicationPhotos?: PublicationPhoto[];
+  photoUrls?: string[];
 }

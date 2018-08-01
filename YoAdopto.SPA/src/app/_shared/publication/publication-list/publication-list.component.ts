@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Publication } from './../../../_models/publication';
+import { Component, OnInit, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-publication-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./publication-list.component.css']
 })
 export class PublicationListComponent implements OnInit {
+
+  @Input() publications: Publication[];
 
   constructor() { }
 

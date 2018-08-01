@@ -24,7 +24,7 @@ export class PublicationService {
     }
 
     if (publicationParams != null) {
-      params = params.append('publicationType', publicationParams.publicationType);
+      params = params.append('publicationTypeId', publicationParams.publicationTypeId);
       params = params.append('orderBy', publicationParams.orderBy);
     }
 

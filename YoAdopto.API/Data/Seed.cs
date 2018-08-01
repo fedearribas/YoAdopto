@@ -71,6 +71,37 @@ namespace YoAdopto.API.Data
         _context.PublicationTypes.AddRange(types);
         _context.SaveChanges();
     }
+
+    public void SeedPublications()
+    {
+        if (_context.Publications.Any())
+            return;
+
+        var publication = new Publication {
+            Id = 1,
+            Title = "Se perdio Lenteja",
+            Description = "Se perdio mi perro Lenteja, por favor si alguien lo vio comuniquese conmigo.",
+            PublicationTypeId = 1,
+            UserId = 1,
+            State = "Buenos Aires",
+            City = "Mar del Plata",
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            Active = true,
+            Photos = new List<PublicationPhoto> {
+                new PublicationPhoto {
+                    Id = 1,
+                    Description = "test",
+                    DateAdded = DateTime.Now,
+                    CreatedAt = DateTime.Now,
+                    Url = "https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg"
+                }
+            }
+        };
+
+        _context.Publications.Add(publication);
+        _context.SaveChanges();
+    }
     
   }
 }

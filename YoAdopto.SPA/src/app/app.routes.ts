@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'perdidos', component: MissingComponent,
-    data: {publicationType: 1},
+    data: {publicationTypeId: 1},
     resolve: { publications: PublicationsResolver }
   }
 ];

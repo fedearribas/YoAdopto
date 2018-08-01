@@ -1,3 +1,8 @@
-<p>
-  publication-list works!
-</p>
+<div *ngFor="let publication of publications" class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{publication.photoUrls[0] }}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ publication.title }}</h5>
+    <p class="card-text"> {{ publication.description }}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
