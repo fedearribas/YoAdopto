@@ -17,10 +17,8 @@ namespace YoAdopto.API.Data
 
     public void SeedUsers()
     {
-        if (_context.Users.Any()) 
-        {
+        if (_context.Users.Any())
             return;
-        }
 
         _context.Users.RemoveRange(_context.Users);
         _context.SaveChanges();

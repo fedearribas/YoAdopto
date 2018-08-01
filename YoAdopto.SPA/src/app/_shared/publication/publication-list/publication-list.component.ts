@@ -1,5 +1,6 @@
 import { Publication } from './../../../_models/publication';
 import { Component, OnInit, Output, Input } from '@angular/core';
+import { AuthService } from '../../../_services/auth.service';
 
 @Component({
   selector: 'app-publication-list',
@@ -10,7 +11,7 @@ export class PublicationListComponent implements OnInit {
 
   @Input() publications: Publication[];
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }

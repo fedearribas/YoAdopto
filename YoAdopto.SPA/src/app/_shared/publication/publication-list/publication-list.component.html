@@ -3,3 +3,8 @@
     <app-publication-card [publication]="publication"></app-publication-card>
   </div>
 </div>
+<div class="fab-button" *ngIf="authService.loggedIn()">
+  <div class="fab">
+    <span>+</span>
+  </div>
+</div>
