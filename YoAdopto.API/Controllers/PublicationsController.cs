@@ -14,7 +14,6 @@ using YoAdopto.API.Models;
 namespace YoAdopto.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class PublicationsController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
@@ -41,14 +40,9 @@ namespace YoAdopto.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPublications(PublicationParams publicationParams)
         {
-            //var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            //var userFromRepo = await unitOfWork.UserRepository.GetById(currentUserId);
-
-            //publicationParams.UserId = currentUserId;
-
             var publications = await unitOfWork.PublicationRepository.GetPaged(filter: p =>
              p.PublicationTypeId == publicationParams.PublicationTypeId,
-             includeProperties: "PublicationPhotos",
+             includeProperties: "Photos",
              pageNumber: publicationParams.PageNumber,
              pageSize: publicationParams.PageSize);
 

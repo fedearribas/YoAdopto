@@ -7,11 +7,17 @@ namespace YoAdopto.API.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private DataContext context = new DataContext();
         private GenericRepository<User> userRepository;
-        private GenericRepository<Publication> publicationRepository;        
+        private GenericRepository<Publication> publicationRepository;
         private GenericRepository<PublicationPhoto> publicationPhotoRepository;
         private GenericRepository<PublicationType> publicationTypeRepository;
+        private readonly DataContext context;
+
+        public UnitOfWork(DataContext context)
+        {
+            this.context = context;
+
+        }
 
         public GenericRepository<User> UserRepository
         {
@@ -37,7 +43,7 @@ namespace YoAdopto.API.Data
                 }
                 return publicationRepository;
             }
-        }        
+        }
 
         public GenericRepository<PublicationPhoto> PublicationPhotoRepository
         {
@@ -89,5 +95,5 @@ namespace YoAdopto.API.Data
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-    }    
+    }
 }
