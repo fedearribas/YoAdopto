@@ -1,3 +1,4 @@
+import { MissingContainerComponent } from './missing/missing-container/missing-container.component';
 import { PublicationService } from './_services/publication.service';
 import { PublicationListComponent } from './_shared/publication/publication-list/publication-list.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -18,6 +19,8 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { MissingComponent } from './missing/missing.component';
 import { PublicationsResolver } from './_resolvers/publications.resolver';
+import { PublicationCardComponent } from './_shared/publication/publication-card/publication-card.component';
+import { PublicationDetailComponent } from './_shared/publication/publication-detail/publication-detail.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -35,8 +38,11 @@ export const jwtConfig = {
       NavbarComponent,
       LoginComponent,
       RegisterComponent,
+      MissingContainerComponent,
       MissingComponent,
-      PublicationListComponent
+      PublicationListComponent,
+      PublicationCardComponent,
+      PublicationDetailComponent
    ],
    imports: [
       BrowserModule,

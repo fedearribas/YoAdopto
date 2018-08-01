@@ -1,7 +1,5 @@
-import { Pagination } from './../_models/pagination';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '../../../node_modules/@angular/router';
-import { Publication } from '../_models/publication';
+
 
 @Component({
   selector: 'app-missing',
@@ -9,16 +7,10 @@ import { Publication } from '../_models/publication';
   styleUrls: ['./missing.component.css']
 })
 export class MissingComponent implements OnInit {
-  missing: Publication[];
-  pagination: Pagination;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.missing = data['publications'].result;
-      this.pagination = data['publications'].pagination;
-    });
   }
 
 }

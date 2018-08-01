@@ -1,5 +1,6 @@
 [
   {
+    "Id": 1,
     "Email": "admin@test.com",
     "Username": "Admin",    
     "Password": "password",    
@@ -8,6 +9,7 @@
     "Active": "true"
   },
   {
+    "Id": 2,
     "Email": "fede.arribas@gmail.com",
     "Username": "Federico Arribas",
     "Password": "password",    
