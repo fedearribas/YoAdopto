@@ -21,6 +21,8 @@ import { MissingComponent } from './missing/missing.component';
 import { PublicationsResolver } from './_resolvers/publications.resolver';
 import { PublicationCardComponent } from './_shared/publication/publication-card/publication-card.component';
 import { PublicationDetailComponent } from './_shared/publication/publication-detail/publication-detail.component';
+import { PublicationDetailResolver } from './_resolvers/publication-detail.resolver';
+import { NgxGalleryModule } from '../../node_modules/ngx-gallery';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -54,14 +56,16 @@ export const jwtConfig = {
       JwtModule.forRoot({
         config: jwtConfig
       }),
-      BsDropdownModule.forRoot()
+      BsDropdownModule.forRoot(),
+      NgxGalleryModule
    ],
    providers: [
      AuthService,
      AlertifyService,
      JwtHelperService,
      PublicationService,
-     PublicationsResolver
+     PublicationsResolver,
+     PublicationDetailResolver
    ],
    bootstrap: [
       AppComponent

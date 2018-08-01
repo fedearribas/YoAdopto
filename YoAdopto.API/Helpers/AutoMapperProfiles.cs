@@ -16,8 +16,10 @@ namespace YoAdopto.API.Helpers
             CreateMap<Publication, PublicationForListDto>()
                 .ForMember(dest => dest.PhotoUrls, opt => {
                     opt.MapFrom(src => src.Photos.Select(p => p.Url));
+                })   
+                .ForMember(dest => dest.Username, opt => {
+                    opt.MapFrom(src => src.User.Username);
                 });
-
 
             CreateMap<PublicationPhotoForCreationDto, PublicationPhoto>();
             CreateMap<PublicationForCreationDto, Publication>();

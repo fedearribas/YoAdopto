@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MissingComponent } from './missing/missing.component';
 import { MissingContainerComponent } from './missing/missing-container/missing-container.component';
+import { PublicationDetailResolver } from './_resolvers/publication-detail.resolver';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
       {path: '', component: MissingContainerComponent, data: {publicationTypeId: 1},
         resolve: { publications: PublicationsResolver }
       },
-      {path: ':id', component: PublicationDetailComponent}
+      {path: ':id', component: PublicationDetailComponent, resolve: {publication: PublicationDetailResolver}}
     ]
   }
 ];

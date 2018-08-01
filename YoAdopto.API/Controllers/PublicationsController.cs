@@ -59,7 +59,8 @@ namespace YoAdopto.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPublication(int id)
         {
-            var publication = await unitOfWork.PublicationRepository.Get(p => p.Id == id);
+            var publication = await unitOfWork.PublicationRepository.GetSingleByCondition(filter: p => p.Id == id,
+                includeProperties: "Photos,User");
             if (publication == null)
                 return NotFound();
             

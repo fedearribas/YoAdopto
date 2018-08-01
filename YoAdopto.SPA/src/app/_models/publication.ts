@@ -5,6 +5,11 @@ export interface Publication {
   title: string;
   description: string;
   publicationType: number;
-  publicationPhotos?: PublicationPhoto[];
+  username: string;
+  createdAt: Date;
+  state: string;
+  city: string;
+  contactPhone: string;
+  contactEmail: string;
   photoUrls?: string[];
 }

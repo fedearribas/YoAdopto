@@ -1,3 +1,58 @@
-<p>
-  publication-detail works!
-</p>
+<div class="card mb-3">
+  <div class="card-title">
+      <h2 class="text-center">{{ publication.title }}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-md-6">
+          <p class="card-text">
+              <span
+              class="text-muted">
+              Publicado por <b>{{publication.username}}</b>
+               el {{ publication.createdAt | date:"dd/MM/yyyy HH:mm:ss" }}
+              </span>
+            </p>
+
+          <div class="list-group-item text-content">
+            <p class="card-text lead">{{ publication.description }}</p>
+            <hr>
+            <p class="card-text">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              Localidad: {{ publication.city + ", " + publication.state }}
+            </p>
+
+            <div class="row" *ngIf="!authService.loggedIn()">
+                <div class="col-md-6 col-sm-6">
+                  <button routerLink="/login" class="btn btn-outline-success btn-block btn-contact">
+                      <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                      Contactar
+                  </button>
+                </div>
+            </div>
+
+
+            <div *ngIf="authService.loggedIn()" >
+                <p><i class="fa fa-id-card-o" aria-hidden="true"></i> Datos de contacto:</p>
+                <p>
+                  <i class="fa fa-mobile" aria-hidden="true"></i>
+                  <span class="card-text"> Tel: {{ publication.contactPhone }}
+                  </span>
+                </p>
+                <p>
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                  <span class="card-text"> Email: {{ publication.contactEmail }}
+                  </span>
+                </p>
+              </div>
+
+
+         </div>
+      </div>
+      <div class="col-md-6">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+      </div>
+    </div>
+
+  </div>
+</div>

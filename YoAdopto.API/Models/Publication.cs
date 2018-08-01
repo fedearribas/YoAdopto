@@ -15,6 +15,8 @@ namespace YoAdopto.API.Models
         public User User { get; set; }
         public string State { get; set; }
         public string City { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactEmail { get; set; }
         public bool PublicationEnded { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

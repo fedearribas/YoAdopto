@@ -17,8 +17,9 @@ namespace YoAdopto.API.Contracts
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "",
             int pageNumber = 1,
-            int pageSize = 10);
-        Task<T> GetById(int id);
+            int pageSize = 12);
+        Task<T> GetSingleByCondition(Expression<Func<T, bool>> filter = null,
+            string includeProperties = "");
         void Create(T entity);
         void Update(T entity);
         void Delete(T entity);

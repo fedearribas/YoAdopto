@@ -20,11 +20,11 @@ namespace YoAdopto.API.Data
             this.dbSet = context.Set<T>();
         }
  
-        public async Task<IEnumerable<T>> Get( Expression<Func<T, bool>> filter = null,
+        public async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
         {
-            return await GetQuery().ToListAsync();
+            return await GetQuery(filter, orderBy, includeProperties).ToListAsync();
         }
 
         public async Task<PagedList<T>> GetPaged(Expression<Func<T, bool>> filter = null, 
@@ -36,9 +36,10 @@ namespace YoAdopto.API.Data
             return await PagedList<T>.CreateAsync(GetQuery(filter, orderBy, includeProperties), pageNumber, pageSize);
         }
 
-         public async Task<T> GetById(int id)
+         public async Task<T> GetSingleByCondition(Expression<Func<T, bool>> filter = null,
+            string includeProperties = "")
         {
-            return await this.dbSet.FindAsync(id);
+            return await GetQuery(filter, null, includeProperties).FirstOrDefaultAsync();
         } 
 
         public void Create(T entity)

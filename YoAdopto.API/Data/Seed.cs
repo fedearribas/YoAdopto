@@ -77,6 +77,9 @@ namespace YoAdopto.API.Data
         if (_context.Publications.Any())
             return;
 
+        _context.Publications.RemoveRange(_context.Publications);
+        _context.SaveChanges();
+
         var publication = new Publication {
             Id = 1,
             Title = "Se perdio Lenteja",
@@ -85,6 +88,8 @@ namespace YoAdopto.API.Data
             UserId = 1,
             State = "Buenos Aires",
             City = "Mar del Plata",
+            ContactPhone = "555123456",
+            ContactEmail = "admin@yoadopto.com",
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
             Active = true,
@@ -95,6 +100,13 @@ namespace YoAdopto.API.Data
                     DateAdded = DateTime.Now,
                     CreatedAt = DateTime.Now,
                     Url = "https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg"
+                },
+                  new PublicationPhoto {
+                    Id = 2,
+                    Description = "test",
+                    DateAdded = DateTime.Now,
+                    CreatedAt = DateTime.Now,
+                    Url = "https://images.theconversation.com/files/229565/original/file-20180727-106505-satvt1.jpg"
                 }
             }
         };

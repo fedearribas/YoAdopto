@@ -4,6 +4,7 @@ import { PaginatedResult } from '../_models/pagination';
 import { Publication } from '../_models/publication';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,6 @@ export class PublicationService {
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
-          console.log(response.body);
-
           if (response.headers.get('Pagination') != null) {
             paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
           }
@@ -42,6 +41,10 @@ export class PublicationService {
           return paginatedResult;
         })
       );
+  }
+
+  getPublication(id): Observable<Publication> {
+    return this.authHttp.get<Publication>(this.baseUrl + '/' + id);
   }
 
 }
