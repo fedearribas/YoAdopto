@@ -53,11 +53,12 @@
   margin: auto;
   padding: 20px;
   cursor: pointer;
-  transition: box-shadow 0.5s;
+  transition: all .25s ease-in-out;
 }
 
 .key-feature__image:hover {
   box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
 }
 
 .key-feature__image:focus {
