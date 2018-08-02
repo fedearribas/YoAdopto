@@ -3,7 +3,7 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AlertifyService } from '../_services/alertify.service';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { PublicationService } from '../_services/publication.service';
 
 @Injectable()
@@ -21,6 +21,7 @@ export class PublicationsResolver implements Resolve<Publication[]> {
     this.publicationParams.orderBy = 'createdAt';
     return this.publicationService.getPublications(this.pageNumber, this.pageSize, this.publicationParams)
     .pipe(
+      map( (dataFromApi) => dataFromApi ),
       catchError(error => {
         this.alertify.error('Problem retrieving data');
         this.router.navigate(['']);

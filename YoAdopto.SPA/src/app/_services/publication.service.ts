@@ -47,4 +47,8 @@ export class PublicationService {
     return this.authHttp.get<Publication>(this.baseUrl + '/' + id);
   }
 
+  insertPublication(publication: Publication) {
+    return this.authHttp.post<Publication>(this.baseUrl, publication);
+    }
+
 }

@@ -23,6 +23,7 @@ import { PublicationCardComponent } from './_shared/publication/publication-card
 import { PublicationDetailComponent } from './_shared/publication/publication-detail/publication-detail.component';
 import { PublicationDetailResolver } from './_resolvers/publication-detail.resolver';
 import { NgxGalleryModule } from '../../node_modules/ngx-gallery';
+import { PublicationFormComponent } from './_shared/publication/publication-form/publication-form.component';
 
 export function getAccessToken(): string {
   return localStorage.getItem('token');
@@ -44,7 +45,8 @@ export const jwtConfig = {
       MissingComponent,
       PublicationListComponent,
       PublicationCardComponent,
-      PublicationDetailComponent
+      PublicationDetailComponent,
+      PublicationFormComponent
    ],
    imports: [
       BrowserModule,

@@ -80,8 +80,8 @@ namespace YoAdopto.API.Data
 
         var publication = new Publication {
             Id = 1,
-            Title = "Se perdio Lenteja",
-            Description = "Se perdio mi perro Lenteja, por favor si alguien lo vio comuniquese conmigo.",
+            Title = "Se perdio mi perro",
+            Description = "Se perdio mi perro Fluffy, por favor si alguien lo vio comuniquese conmigo.",
             PublicationTypeId = 1,
             UserId = 1,
             State = "Buenos Aires",

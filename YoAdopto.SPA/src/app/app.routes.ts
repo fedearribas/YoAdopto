@@ -8,17 +8,22 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MissingComponent } from './missing/missing.component';
 import { MissingContainerComponent } from './missing/missing-container/missing-container.component';
 import { PublicationDetailResolver } from './_resolvers/publication-detail.resolver';
+import { PublicationFormComponent } from './_shared/publication/publication-form/publication-form.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'perdidos', component: MissingComponent,
+    runGuardsAndResolvers: 'always',
     children: [
       {path: '', component: MissingContainerComponent, data: {publicationTypeId: 1},
         resolve: { publications: PublicationsResolver }
       },
-      {path: ':id', component: PublicationDetailComponent, resolve: {publication: PublicationDetailResolver}}
+      {path: 'new', component: PublicationFormComponent, data: {publicationTypeId: 1}},
+      {path: ':id', component: PublicationDetailComponent,
+        resolve: {publication: PublicationDetailResolver}
+      }
     ]
   }
 ];

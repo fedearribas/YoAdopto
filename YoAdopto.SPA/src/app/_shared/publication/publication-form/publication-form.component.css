@@ -1,0 +1,9 @@
+.card-title {
+  margin-bottom: 0;
+}
+
+.card-title > h2 {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-weight: 400;
+}

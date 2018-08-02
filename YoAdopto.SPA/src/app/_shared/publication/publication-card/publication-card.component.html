@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-img-container">
-    <img class="card-img-top clickeable" routerLink="/perdidos/{{ publication.id }}" src="{{publication.photoUrls[0] }}" alt="Card image cap">
+    <img class="card-img-top clickeable" routerLink="{{ publication.id }}" src="{{publication.photoUrls[0] }}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title text-center clickeable" routerLink="/perdidos/{{ publication.id }}">
+      <h5 class="card-title text-center clickeable" routerLink="{{ publication.id }}">
           {{( publication.title.length > 20)? (publication.title | slice:0:20)+'...':(publication.title) }}
       </h5>
       <p class="card-text text-center">
