@@ -5,6 +5,7 @@ import { Publication } from '../../../_models/publication';
 import { PublicationService } from '../../../_services/publication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../_services/auth.service';
+import { AlertifyService } from '../../../_services/alertify.service';
 
 @Component({
   selector: 'app-publication-form',
@@ -28,10 +29,24 @@ export class PublicationFormComponent implements OnInit {
   constructor(private publicationService: PublicationService,
               private router: Router,
               private authService: AuthService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
-    this.title = 'Nueva Publicación de Perdidos';
+    this.route.data.subscribe(data => {
+      this.publicationTypeId = data['publicationTypeId'];
+      let type = '';
+      if (this.publicationTypeId === 1) {
+        type = 'Perdidos';
+      } else if (this.publicationTypeId === 2) {
+        type = 'Encontrados';
+      } else if (this.publicationTypeId === 3) {
+        type = 'Adopciones';
+      }
+      this.title = 'Nueva Publicación de ' + type;
+    });
+
+
     this.initForm();
   }
 
@@ -70,16 +85,19 @@ export class PublicationFormComponent implements OnInit {
 
   onSubmit() {
     this.publication = Object.assign({}, this.publicationForm.value);
-    this.publication.publicationType = 1;
+    this.publication.publicationTypeId = this.publicationTypeId;
 
-    for(let photo of this.imageFiles) {
+    /*for(let photo of this.imageFiles) {
       let file: PublicationPhoto = {
         file: photo
-      };
-      this.publication.photos = [];
-      this.publication.photos.push(file);
-    }
+      };*/
+     // this.publication.photos = [];
+      //this.publication.photos.push(file);
 
+    //}
+
+    this.publication.photos = [];
+    this.publication.photos = this.imageFiles;
     this.isSaving = true;
 
     if (this.editMode) {
@@ -87,7 +105,13 @@ export class PublicationFormComponent implements OnInit {
     } else {
       const userId = this.authService.currentUser.id;
       this.publication.userId = userId;
-      this.publicationService.insertPublication(this.publication);
+      console.log(this.publication);
+
+      this.publicationService.insertPublication(this.publication).subscribe(
+        res => this.router.navigate(['/'])
+        , error => {
+        this.alertify.error(error);
+      });
     }
   }
 }

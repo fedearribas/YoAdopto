@@ -4,7 +4,7 @@ export interface Publication {
   id: number;
   title: string;
   description: string;
-  publicationType: number;
+  publicationTypeId: number;
   username: string;
   userId: number;
   createdAt: Date;
@@ -13,5 +13,5 @@ export interface Publication {
   contactPhone: string;
   contactEmail: string;
   photoUrls?: string[];
-  photos?: PublicationPhoto[];
+  photos?: File[];
 }

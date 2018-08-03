@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '../../../node_modules/@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '../../../node_modules/@angular/common/http';
 import { PaginatedResult } from '../_models/pagination';
 import { Publication } from '../_models/publication';
 import { environment } from '../../environments/environment';
@@ -48,7 +48,16 @@ export class PublicationService {
   }
 
   insertPublication(publication: Publication) {
-    return this.authHttp.post<Publication>(this.baseUrl, publication);
+    const formData = new FormData();
+    formData.append('publication', JSON.stringify(publication));
+    for (let file of publication.photos) {
+      formData.append('file', file, file.name);
+    }
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', undefined );
+    headers.append('Accept', 'application/json');
+
+    return this.authHttp.post(this.baseUrl, formData, {headers: headers});
     }
 
 }

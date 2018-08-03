@@ -71,6 +71,9 @@ namespace YoAdopto.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePublication([FromBody]PublicationForCreationDto publicationForCreationDto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest();
+                
             var publication = mapper.Map<Publication>(publicationForCreationDto);
             unitOfWork.PublicationRepository.Create(publication);
 

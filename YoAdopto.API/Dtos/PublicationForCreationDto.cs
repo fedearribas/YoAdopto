@@ -8,6 +8,8 @@ namespace YoAdopto.API.Dtos
         public string Description { get; set; }
         public int PublicationTypeId { get; set; }
         public ICollection<PublicationPhotoForCreationDto> Photos { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactEmail { get; set; }
         public int UserId { get; set; }
         public string State { get; set; }
         public string City { get; set; }        
